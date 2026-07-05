@@ -23,6 +23,7 @@ export default function AdminPage() {
   const [saved, setSaved] = useState(false)
   const [editId, setEditId] = useState<string|null>(null)
   const [error, setError] = useState('')
+  const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
     if (tab === 'orders') {
