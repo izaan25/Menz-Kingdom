@@ -42,6 +42,23 @@ export default function AdminPage() {
     setOrders(o=>o.map(x=>x.id===id?{...x,status:status as Order['status']}:x))
   }
 
+   const uploadImage = async (file: File) => {
+    setError('')
+    setUploading(true)
+    const fd = new FormData()
+    fd.append('file', file)
+    try {
+      const res = await fetch('/api/admin/upload', { method:'POST', body: fd })
+      const data = await res.json()
+      if (!res.ok) { setError(data.error || 'Failed to upload image'); return }
+      setForm(f=>({...f, image_url: data.url}))
+    } catch {
+      setError('Failed to upload image')
+    } finally {
+      setUploading(false)
+    }
+  }
+
   const saveProduct = async () => {
     setError('')
     if (!form.name.trim()) { setError('Product name is required'); return }
@@ -323,14 +340,20 @@ export default function AdminPage() {
                 <div style={{ fontSize:11, color:'#444', marginTop:6 }}>Pick one or type your own emoji in the box</div>
               </div>
 
-              {/* Image URL */}
+            
+             {/* Image Upload */}
               <div>
-                <label style={lbl}>Product Image URL</label>
-                <input style={inp} placeholder="https://example.com/shoe.jpg" value={form.image_url} onChange={e=>setForm(f=>({...f,image_url:e.target.value}))}
-                  onFocus={e=>(e.target.style.borderColor='#D4A017')} onBlur={e=>(e.target.style.borderColor='#2a2a2a')} />
-                <div style={{ fontSize:11, color:'#444', marginTop:6 }}>Upload your photo to a free host like imgbb.com or postimages.org, then paste the direct image link here. Leave blank to use the emoji instead.</div>
-                {form.image_url && (
-                  <img src={form.image_url} alt="preview" style={{ marginTop:10, width:120, height:120, objectFit:'cover', border:'1px solid #2a2a2a' }} onError={e=>(e.currentTarget.style.display='none')} />
+                <label style={lbl}>Product Image</label>
+                <input type="file" accept="image/*" style={{ ...inp, padding:'9px 14px' }} disabled={uploading}
+                  onChange={e=>{ const f=e.target.files?.[0]; if (f) uploadImage(f) }} />
+                <div style={{ fontSize:11, color:'#444', marginTop:6 }}>
+                  {uploading ? 'Uploading...' : 'Pick a photo from your PC (max 5MB). Leave blank to use the emoji instead.'}
+                </div>
+                {form.image_url && !uploading && (
+                  <div style={{ marginTop:10, display:'flex', alignItems:'center', gap:10 }}>
+                    <img src={form.image_url} alt="preview" style={{ width:120, height:120, objectFit:'cover', border:'1px solid #2a2a2a' }} onError={e=>(e.currentTarget.style.display='none')} />
+                    <button onClick={()=>setForm(f=>({...f,image_url:''}))} style={{ background:'transparent', color:'#E74C3C', border:'1px solid #2a1010', padding:'8px 14px', fontSize:11, fontWeight:700, letterSpacing:'1px', textTransform:'uppercase', cursor:'pointer', fontFamily:'inherit' }}>Remove</button>
+                  </div>
                 )}
               </div>
 
@@ -377,7 +400,7 @@ export default function AdminPage() {
                     Cancel Edit
                   </button>
                 )}
-                <button onClick={saveProduct} disabled={saving} style={{ flex:2, background: saving ? '#555' : '#D4A017', color:'#000', border:'none', padding:'15px', fontSize:13, fontWeight:900, letterSpacing:'1.5px', textTransform:'uppercase', cursor: saving ? 'not-allowed' : 'pointer', transition:'background 0.15s' }}>
+                <button onClick={saveProduct} disabled={saving || uploading} style={{ flex:2, background: (saving||uploading) ? '#555' : '#D4A017', color:'#000', border:'none', padding:'15px', fontSize:13, fontWeight:900, letterSpacing:'1.5px', textTransform:'uppercase', cursor: (saving||uploading) ? 'not-allowed' : 'pointer', transition:'background 0.15s' }}>
                   {saving ? 'Saving...' : editId ? '✓ Update Product' : '+ Add to Store'}
                 </button>
               </div>
