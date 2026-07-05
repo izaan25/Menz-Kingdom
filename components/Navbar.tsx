@@ -60,11 +60,13 @@ export default function Navbar() {
   return (
     <>
       <nav style={navStyle}>
-        <div style={{ display: 'flex', alignItems: 'center', height: 64, padding: '0 28px', gap: 8 }}>
+        <div className="nav-inner" style={{ display: 'flex', alignItems: 'center', height: 64, padding: '0 28px', gap: 8, maxWidth: '100vw' }}>
           {/* Logo */}
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginRight: 20 }}>
-            <Image src="/logo.png" alt="Men'z Kingdom" width={40} height={40} style={{ objectFit: 'contain' }} />
-            <span style={{ fontSize: 17, fontWeight: 900, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '-0.3px' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginRight: 20, minWidth: 0 }}>
+            <div style={{ width: 40, height: 40, flexShrink: 0, borderRadius: 8, background: 'var(--gold-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Image src="/logo.png" alt="Men'z Kingdom" width={30} height={30} style={{ objectFit: 'contain' }} />
+            </div>
+            <span className="brand-name" style={{ fontSize: 17, fontWeight: 900, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '-0.3px', whiteSpace: 'nowrap' }}>
               Men&apos;z <span style={{ color: 'var(--gold)' }}>Kingdom</span>
             </span>
           </Link>
@@ -121,9 +123,9 @@ export default function Navbar() {
             </button>
 
             {/* Cart */}
-            <button onClick={() => setCartOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--gold)', color: '#000', border: 'none', padding: '9px 18px', fontSize: 11, fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase', cursor: 'pointer' }}>
+            <button className="cart-btn" onClick={() => setCartOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--gold)', color: '#000', border: 'none', padding: '9px 18px', fontSize: 11, fontWeight: 800, letterSpacing: '1px', textTransform: 'uppercase', cursor: 'pointer', whiteSpace: 'nowrap' }}>
               <ShoppingCart size={14} />
-              Cart
+              <span className="cart-label">Cart</span>
               {count > 0 && (
                 <span style={{ background: '#000', color: 'var(--gold)', width: 18, height: 18, borderRadius: '50%', fontSize: 10, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{count}</span>
               )}
@@ -154,9 +156,17 @@ export default function Navbar() {
         @media (max-width: 768px) {
           .hidden-mobile { display: none !important; }
           .show-mobile { display: flex !important; }
+          .nav-inner { padding: 0 14px !important; gap: 6px !important; }
         }
         @media (min-width: 769px) {
           .show-mobile { display: none !important; }
+        }
+        @media (max-width: 400px) {
+          .brand-name { font-size: 14px !important; }
+        }
+        @media (max-width: 340px) {
+          .cart-label { display: none !important; }
+          .cart-btn { padding: 9px 12px !important; }
         }
       `}</style>
     </>

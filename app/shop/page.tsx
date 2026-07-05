@@ -66,9 +66,9 @@ function ShopContent() {
   return (
     <>
       {/* Header */}
-      <div style={{ background: 'var(--bg2)', borderBottom: '1px solid var(--border)', padding: '48px 32px 0' }}>
+      <div className="shop-header-pad" style={{ background: 'var(--bg2)', borderBottom: '1px solid var(--border)', padding: '48px 32px 0' }}>
         <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 8 }}>Men&apos;z Kingdom</div>
-        <div style={{ fontSize: 52, fontWeight: 900, color: 'var(--text)', lineHeight: 1, textTransform: 'uppercase', letterSpacing: '-1px', marginBottom: 28 }}>{title}</div>
+        <div className="section-heading" style={{ fontSize: 52, fontWeight: 900, color: 'var(--text)', lineHeight: 1, textTransform: 'uppercase', letterSpacing: '-1px', marginBottom: 28, overflowWrap: 'break-word' }}>{title}</div>
 
         {/* Filter tabs */}
         <div style={{ display: 'flex', borderTop: '1px solid var(--border)', overflowX: 'auto' }}>
@@ -101,7 +101,13 @@ function ShopContent() {
       </div>
 
       <Footer />
-      <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }`}</style>
+      <style>{`
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+        @media(max-width:640px){
+          .shop-header-pad{padding:32px 20px 0!important}
+          .section-heading{font-size:32px!important}
+        }
+      `}</style>
     </>
   )
 }

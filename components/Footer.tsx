@@ -7,7 +7,9 @@ export default function Footer() {
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, marginBottom: 56 }} className="footer-grid">
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-            <Image src="/logo.png" alt="Men'z Kingdom" width={36} height={36} style={{ objectFit: 'contain' }} />
+            <div style={{ width: 36, height: 36, flexShrink: 0, borderRadius: 8, background: 'var(--gold-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Image src="/logo.png" alt="Men'z Kingdom" width={27} height={27} style={{ objectFit: 'contain' }} />
+            </div>
             <span style={{ fontSize: 16, fontWeight: 900, color: 'var(--text)', textTransform: 'uppercase' }}>
               Men&apos;z <span style={{ color: 'var(--gold)' }}>Kingdom</span>
             </span>

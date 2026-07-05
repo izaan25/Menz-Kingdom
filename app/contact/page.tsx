@@ -21,9 +21,9 @@ export default function ContactPage() {
     <>
       <div style={{ minHeight: 'calc(100vh - 100px)', display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="contact-grid">
         {/* LEFT */}
-        <div style={{ background: 'var(--bg2)', padding: '80px 56px', borderRight: '1px solid var(--border)' }}>
+        <div className="contact-pad" style={{ background: 'var(--bg2)', padding: '80px 56px', borderRight: '1px solid var(--border)' }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 16 }}>Get in Touch</div>
-          <h1 style={{ fontSize: 'clamp(48px,5vw,80px)', fontWeight: 900, color: 'var(--text)', lineHeight: 0.95, textTransform: 'uppercase', letterSpacing: '-2px', marginBottom: 24 }}>
+          <h1 className="contact-title" style={{ fontSize: 'clamp(48px,5vw,80px)', fontWeight: 900, color: 'var(--text)', lineHeight: 0.95, textTransform: 'uppercase', letterSpacing: '-2px', marginBottom: 24, overflowWrap: 'break-word' }}>
             CONTACT<br />THE <span style={{ color: 'var(--gold)' }}>KINGDOM</span>
           </h1>
           <p style={{ fontSize: 14, color: 'var(--text3)', lineHeight: 1.8, marginBottom: 48 }}>We&apos;d love to hear from you. Reach out any time and we&apos;ll get back within 1–2 hours during business hours.</p>
@@ -40,7 +40,7 @@ export default function ContactPage() {
         </div>
 
         {/* RIGHT */}
-        <div style={{ padding: '80px 56px', background: 'var(--bg)' }}>
+        <div className="contact-pad" style={{ padding: '80px 56px', background: 'var(--bg)' }}>
           {sent ? (
             <div style={{ textAlign: 'center', paddingTop: 80 }}>
               <div style={{ fontSize: 64, marginBottom: 20 }}>✅</div>
@@ -85,7 +85,13 @@ export default function ContactPage() {
         </div>
       </div>
       <Footer />
-      <style>{`@media(max-width:768px){.contact-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`
+        @media(max-width:768px){.contact-grid{grid-template-columns:1fr!important}}
+        @media(max-width:640px){
+          .contact-pad{padding:48px 20px!important}
+          .contact-title{font-size:clamp(34px,11vw,56px)!important}
+        }
+      `}</style>
     </>
   )
 }

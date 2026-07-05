@@ -29,9 +29,9 @@ export default function HomePage() {
         <div style={{ position:'absolute',inset:0,backgroundImage:'linear-gradient(rgba(212,160,23,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.035) 1px,transparent 1px)',backgroundSize:'80px 80px' }} />
         <div style={{ position:'absolute',inset:0,background:'radial-gradient(ellipse 70% 80% at 60% 40%, rgba(212,160,23,0.06) 0%, transparent 60%)' }} />
         <Image src="/logo.png" alt="" width={500} height={500} priority style={{ position:'absolute',right:-20,top:'50%',transform:'translateY(-50%)',opacity:0.05,pointerEvents:'none' }} />
-        <div style={{ position:'relative',zIndex:2,padding:'80px 56px 72px',maxWidth:700 }}>
+        <div className="hero-pad" style={{ position:'relative',zIndex:2,padding:'80px 56px 72px',maxWidth:700,width:'100%',boxSizing:'border-box' }}>
           <div style={{ display:'inline-block',background:'var(--gold)',color:'#000',fontSize:10,fontWeight:800,letterSpacing:'2.5px',textTransform:'uppercase',padding:'6px 14px',marginBottom:28 }}>Karachi&apos;s Premier Footwear</div>
-          <h1 style={{ fontSize:'clamp(72px,9vw,130px)',fontWeight:900,lineHeight:0.92,color:'var(--text)',letterSpacing:'-2px',marginBottom:6,textTransform:'uppercase' }}>
+          <h1 className="hero-title" style={{ fontSize:'clamp(72px,9vw,130px)',fontWeight:900,lineHeight:0.92,color:'var(--text)',letterSpacing:'-2px',marginBottom:6,textTransform:'uppercase',overflowWrap:'break-word' }}>
             STEP INTO<br />YOUR <span style={{ color:'var(--gold)' }}>KINGDOM</span>
           </h1>
           <p style={{ fontSize:14,fontWeight:300,color:'var(--text3)',letterSpacing:'2px',textTransform:'uppercase',marginBottom:28,marginTop:14,fontStyle:'italic' }}>Give great shoes a second throne.</p>
@@ -80,11 +80,11 @@ export default function HomePage() {
       </div>
 
       {/* NEW ARRIVALS */}
-      <section style={{ padding:'56px 32px',background:'var(--bg)' }}>
+      <section className="section-pad" style={{ padding:'56px 32px',background:'var(--bg)' }}>
         <div style={{ display:'flex',alignItems:'flex-end',justifyContent:'space-between',marginBottom:32 }}>
           <div>
             <div style={{ fontSize:10,fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'var(--gold)',marginBottom:8 }}>Just Dropped</div>
-            <div style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px' }}>NEW ARRIVALS</div>
+            <div className="section-heading" style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px',overflowWrap:'break-word' }}>NEW ARRIVALS</div>
           </div>
           <Link href="/shop?filter=new" style={{ fontSize:11,fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'var(--text)',textDecoration:'none',borderBottom:'1px solid var(--border2)',paddingBottom:2 }}>View All →</Link>
         </div>
@@ -94,10 +94,10 @@ export default function HomePage() {
       </section>
 
       {/* BANNER */}
-      <div style={{ background:'var(--bg2)',borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)',padding:'72px 56px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:40,flexWrap:'wrap' }}>
+      <div className="banner-pad" style={{ background:'var(--bg2)',borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)',padding:'72px 56px',display:'flex',alignItems:'center',justifyContent:'space-between',gap:40,flexWrap:'wrap' }}>
         <div style={{ maxWidth:560 }}>
           <div style={{ fontSize:10,fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'var(--gold)',marginBottom:16 }}>Our Promise</div>
-          <div style={{ fontSize:'clamp(48px,6vw,88px)',fontWeight:900,color:'var(--text)',lineHeight:0.95,textTransform:'uppercase',letterSpacing:'-2px',marginBottom:20 }}>GIVE GREAT<br />SHOES A<br /><span style={{ color:'var(--gold)' }}>SECOND THRONE</span></div>
+          <div className="promise-heading" style={{ fontSize:'clamp(48px,6vw,88px)',fontWeight:900,color:'var(--text)',lineHeight:0.95,textTransform:'uppercase',letterSpacing:'-2px',marginBottom:20,overflowWrap:'break-word' }}>GIVE GREAT<br />SHOES A<br /><span style={{ color:'var(--gold)' }}>SECOND THRONE</span></div>
           <p style={{ fontSize:14,color:'var(--text2)',lineHeight:1.8,marginBottom:32 }}>Every pair is handpicked, authenticated, and delivered to your door. No replicas. No compromises.</p>
           <Link href="/shop" style={{ background:'var(--text)',color:'var(--bg)',padding:'15px 36px',fontSize:12,fontWeight:800,letterSpacing:'1.5px',textTransform:'uppercase',textDecoration:'none',display:'inline-block' }}>Shop All Shoes →</Link>
         </div>
@@ -105,11 +105,11 @@ export default function HomePage() {
       </div>
 
       {/* SALE */}
-      <section style={{ padding:'56px 32px',background:'var(--bg2)' }}>
+      <section className="section-pad" style={{ padding:'56px 32px',background:'var(--bg2)' }}>
         <div style={{ display:'flex',alignItems:'flex-end',justifyContent:'space-between',marginBottom:32 }}>
           <div>
             <div style={{ fontSize:10,fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'var(--gold)',marginBottom:8 }}>Limited Time</div>
-            <div style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px' }}>ON SALE NOW</div>
+            <div className="section-heading" style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px',overflowWrap:'break-word' }}>ON SALE NOW</div>
           </div>
           <Link href="/shop?filter=sale" style={{ fontSize:11,fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'var(--text)',textDecoration:'none',borderBottom:'1px solid var(--border2)',paddingBottom:2 }}>View All →</Link>
         </div>
@@ -119,10 +119,10 @@ export default function HomePage() {
       </section>
 
       {/* WHY US */}
-      <section style={{ padding:'56px 32px',background:'var(--bg)' }}>
+      <section className="section-pad" style={{ padding:'56px 32px',background:'var(--bg)' }}>
         <div style={{ marginBottom:32 }}>
           <div style={{ fontSize:10,fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'var(--gold)',marginBottom:8 }}>Why Choose Us</div>
-          <div style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px' }}>THE KINGDOM DIFFERENCE</div>
+          <div className="section-heading" style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px',overflowWrap:'break-word' }}>THE KINGDOM DIFFERENCE</div>
         </div>
         <div style={{ display:'grid',gridTemplateColumns:'repeat(4,1fr)',border:'1px solid var(--border)' }} className="why-grid">
           {[['🚀','FAST DELIVERY','Same-day dispatch in Karachi. Nationwide in 3–5 days.'],['💵','CASH ON DELIVERY','Pay when your order arrives. No upfront risk.'],['✅','100% AUTHENTIC','Every pair is genuine. No replicas, ever.'],['🔄','EASY RETURNS','Wrong size? Return within 7 days, hassle-free.']].map(([icon,title,desc],i) => (
@@ -138,10 +138,10 @@ export default function HomePage() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section style={{ padding:'56px 32px',background:'var(--bg2)' }}>
+      <section className="section-pad" style={{ padding:'56px 32px',background:'var(--bg2)' }}>
         <div style={{ marginBottom:32 }}>
           <div style={{ fontSize:10,fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'var(--gold)',marginBottom:8 }}>Reviews</div>
-          <div style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px' }}>WHAT KINGS SAY</div>
+          <div className="section-heading" style={{ fontSize:52,fontWeight:900,color:'var(--text)',lineHeight:1,textTransform:'uppercase',letterSpacing:'-1px',overflowWrap:'break-word' }}>WHAT KINGS SAY</div>
         </div>
         <div style={{ display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:2 }} className="testi-grid">
           {[['Ahmed Raza','Karachi','Got my Nike Air Force from Men\'z Kingdom — authentic, fast delivery, excellent packaging. Will order again.'],['Muhammad Bilal','Lahore','Best online shoe store in Pakistan. Oxford Classics exactly as described. COD made it very convenient.'],['Usman Shah','Islamabad','Size exchange handled professionally. Top notch service. My go-to for men\'s footwear now.']].map(([name,city,text]) => (
@@ -161,6 +161,14 @@ export default function HomePage() {
       <style>{`
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
         @media(max-width:768px){.cat-grid{grid-template-columns:1fr!important}.why-grid{grid-template-columns:1fr 1fr!important}.testi-grid{grid-template-columns:1fr!important}}
+        @media(max-width:640px){
+          .hero-pad{padding:56px 20px 40px!important}
+          .hero-title{font-size:clamp(40px,13vw,72px)!important;letter-spacing:-1px!important}
+          .section-heading{font-size:32px!important}
+          .section-pad{padding:40px 20px!important}
+          .banner-pad{padding:48px 20px!important}
+          .promise-heading{font-size:clamp(32px,9vw,48px)!important}
+        }
       `}</style>
     </>
   )

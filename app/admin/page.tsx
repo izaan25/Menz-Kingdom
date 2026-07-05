@@ -105,7 +105,10 @@ export default function AdminPage() {
             <div style={{ fontSize:20, fontWeight:900, textTransform:'uppercase', letterSpacing:'-0.5px' }}>Admin Dashboard</div>
           </div>
         </div>
-        <a href="/" style={{ fontSize:11, fontWeight:700, letterSpacing:'1px', textTransform:'uppercase', color:'#555', textDecoration:'none', border:'1px solid #1f1f1f', padding:'8px 16px' }}>← Back to Site</a>
+        <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+          <a href="/" style={{ fontSize:11, fontWeight:700, letterSpacing:'1px', textTransform:'uppercase', color:'#555', textDecoration:'none', border:'1px solid #1f1f1f', padding:'8px 16px' }}>← Back to Site</a>
+          <button onClick={async ()=>{ await fetch('/api/admin/logout', { method:'POST' }); window.location.href='/admin/login' }} style={{ fontSize:11, fontWeight:700, letterSpacing:'1px', textTransform:'uppercase', color:'#E74C3C', background:'none', textDecoration:'none', border:'1px solid #2a1010', padding:'8px 16px', cursor:'pointer', fontFamily:'inherit' }}>Log Out</button>
+        </div>
       </div>
 
       {/* Tabs */}
