@@ -23,12 +23,17 @@ export async function POST(req: NextRequest) {
       .from('product-images')
       .upload(fileName, buffer, { contentType: file.type, upsert: false })
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase storage upload error:', error)
+      throw error
+    }
 
     const { data } = supabaseAdmin.storage.from('product-images').getPublicUrl(fileName)
 
     return NextResponse.json({ url: data.publicUrl })
   } catch (e: unknown) {
-    return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 })
+    console.error('Upload route error:', e)
+    const message = e instanceof Error ? e.message : 'Failed to upload image'
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
