@@ -29,7 +29,13 @@ export default function ProductModal({ product, open, onClose }: { product: Prod
         </div>
 
         <div style={{ padding: 24 }}>
-          <div style={{ width: '100%', height: 200, background: 'var(--bg2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 96, marginBottom: 22, border: '1px solid var(--border)' }}>
+          <div style={{ width: '100%', height: 200, background: 'var(--bg2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 96, marginBottom: 22, border: '1px solid var(--border)', overflow: 'hidden' }}>
+            {product.image_url ? (
+              <img src={product.image_url} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : (
+              product.emoji
+            )}
+          </div>
             {product.emoji}
           </div>
 
