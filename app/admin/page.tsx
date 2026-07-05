@@ -11,7 +11,7 @@ const STATUS_COLORS: Record<string,string> = {
   pending:'#E67E22', confirmed:'#3498DB', shipped:'#9B59B6', delivered:'#27AE60', cancelled:'#E74C3C'
 }
 
-const blank = { name:'', brand:'', type:'sneakers', price:'', original_price:'', emoji:'👟', description:'', badge:'', sizes:'39,40,41,42,43,44', in_stock: true }
+const blank = { name:'', brand:'', type:'sneakers', price:'', original_price:'', emoji:'👟', image_url:'', description:'', badge:'', sizes:'39,40,41,42,43,44', in_stock: true }
 
 export default function AdminPage() {
   const [tab, setTab] = useState<Tab>('orders')
@@ -54,6 +54,7 @@ export default function AdminPage() {
       price: parseInt(form.price),
       original_price: form.original_price ? parseInt(form.original_price) : null,
       emoji: form.emoji,
+      image_url: form.image_url.trim() || null,
       description: form.description.trim(),
       badge: form.badge || null,
       sizes: form.sizes.split(',').map(s=>parseInt(s.trim())).filter(n=>!isNaN(n)),
@@ -77,7 +78,7 @@ export default function AdminPage() {
     setForm({
       name: p.name, brand: p.brand, type: p.type,
       price: String(p.price), original_price: p.original_price ? String(p.original_price) : '',
-      emoji: p.emoji, description: p.description, badge: p.badge||'',
+      emoji: p.emoji, image_url: p.image_url||'', description: p.description, badge: p.badge||'',
       sizes: p.sizes.join(','), in_stock: p.in_stock,
     })
     setEditId(p.id)
@@ -318,8 +319,21 @@ export default function AdminPage() {
                 <label style={lbl}>Available Sizes (UK, comma-separated)</label>
                 <input style={inp} placeholder="e.g. 39,40,41,42,43,44" value={form.sizes} onChange={e=>setForm(f=>({...f,sizes:e.target.value}))}
                   onFocus={e=>(e.target.style.borderColor='#D4A017')} onBlur={e=>(e.target.style.borderColor='#2a2a2a')} />
-                <div style={{ fontSize:11, color:'#444', marginTop:6 }}>Preview: {form.sizes.split(',').filter(s=>s.trim()).map(s=>`UK ${s.trim()}`).join(' · ')}</div>
+                <div style={{ fontSize:11, color:'#444', marginTop:6 }}>Pick one or type your own emoji in the box</div>
               </div>
+
+              {/* Image URL */}
+              <div>
+                <label style={lbl}>Product Image URL</label>
+                <input style={inp} placeholder="https://example.com/shoe.jpg" value={form.image_url} onChange={e=>setForm(f=>({...f,image_url:e.target.value}))}
+                  onFocus={e=>(e.target.style.borderColor='#D4A017')} onBlur={e=>(e.target.style.borderColor='#2a2a2a')} />
+                <div style={{ fontSize:11, color:'#444', marginTop:6 }}>Upload your photo to a free host like imgbb.com or postimages.org, then paste the direct image link here. Leave blank to use the emoji instead.</div>
+                {form.image_url && (
+                  <img src={form.image_url} alt="preview" style={{ marginTop:10, width:120, height:120, objectFit:'cover', border:'1px solid #2a2a2a' }} onError={e=>(e.currentTarget.style.display='none')} />
+                )}
+              </div>
+
+              {/* Badge */}
 
               {/* Description */}
               <div>
@@ -340,7 +354,9 @@ export default function AdminPage() {
               <div style={{ borderTop:'1px solid #1f1f1f', paddingTop:18 }}>
                 <label style={lbl}>Preview</label>
                 <div style={{ background:'#111', border:'1px solid #2a2a2a', maxWidth:220 }}>
-                  <div style={{ fontSize:64, textAlign:'center', padding:'20px 0', background:'#0d0d0d', borderBottom:'1px solid #1f1f1f' }}>{form.emoji||'👟'}</div>
+                  <div style={{ fontSize:64, textAlign:'center', padding: form.image_url ? 0 : '20px 0', background:'#0d0d0d', borderBottom:'1px solid #1f1f1f', height:100, display:'flex', alignItems:'center', justifyContent:'center', overflow:'hidden' }}>
+                    {form.image_url ? <img src={form.image_url} alt="" style={{ width:'100%', height:'100%', objectFit:'cover' }} onError={e=>(e.currentTarget.style.display='none')} /> : (form.emoji||'👟')}
+                  </div>
                   <div style={{ padding:'14px 16px' }}>
                     <div style={{ fontSize:9, fontWeight:700, letterSpacing:'2px', textTransform:'uppercase', color:'#D4A017', marginBottom:3 }}>{form.brand||'Brand'}</div>
                     <div style={{ fontSize:14, fontWeight:700, color:'#fff', marginBottom:10 }}>{form.name||'Shoe Name'}</div>
