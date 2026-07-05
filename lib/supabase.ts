@@ -15,6 +15,7 @@ export type Product = {
   price: number
   original_price: number | null
   emoji: string
+  image_url: string | null
   sizes: number[]
   badge: 'new' | 'sale' | null
   description: string
