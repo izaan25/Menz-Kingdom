@@ -32,7 +32,11 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
 
         <div style={{ aspectRatio: '1/1', background: 'var(--card2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 88, position: 'relative', overflow: 'hidden' }}>
-          <span style={{ position: 'relative', zIndex: 1 }}>{product.emoji}</span>
+          {product.image_url ? (
+            <img src={product.image_url} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'relative', zIndex: 1 }} />
+          ) : (
+            <span style={{ position: 'relative', zIndex: 1 }}>{product.emoji}</span>
+          )}
           <button className="quick-add" onClick={quickAdd} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'var(--gold)', color: '#000', border: 'none', padding: 12, fontSize: 11, fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', zIndex: 2, cursor: 'pointer' }}>
             + Quick Add
           </button>
