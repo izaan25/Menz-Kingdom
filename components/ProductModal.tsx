@@ -36,8 +36,6 @@ export default function ProductModal({ product, open, onClose }: { product: Prod
               product.emoji
             )}
           </div>
-            {product.emoji}
-          </div>
 
           <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 4 }}>{product.brand}</div>
           <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--text)', marginBottom: 4 }}>{product.name}</div>
